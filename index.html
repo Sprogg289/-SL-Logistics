@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | [SL] Logistics</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      position: fixed; /* Fixed to stay on top */
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap; /* Allow wrapping if content is too wide */
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.85); /* Slightly darker for readability */
+      box-sizing: border-box; /* Include padding in width calculation */
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #fff;
+      flex-shrink: 0; /* Prevent logo from shrinking */
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      flex-wrap: wrap; /* Wrap links if needed */
+      gap: 1rem; /* Space between links */
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      white-space: nowrap; /* Prevent links from breaking */
+    }
+
+    .navbar a:hover {
+      color: #8B1627;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background-image: url(Background.png); /* Replace with your full-screen image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 90%;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #ccc;
+    }
+
+    /* --- ABOUT SECTION --- */
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6rem 10%;
+      flex-wrap: wrap;
+      background-color: #1a1a1a;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+      margin-right: 2rem;
+    }
+
+    .about-text h2 {
+      background-color: #8B1627;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1.5rem;
+    }
+
+    .about-text p {
+      margin-top: 1.5rem;
+      line-height: 1.7;
+      color: #ddd;
+    }
+
+    .about-img {
+      flex: 1;
+      min-width: 300px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+    }
+
+    .about-img.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-img img {
+      width: 100%;
+      border: 3px solid #8B1627;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    /* --- RESPONSIVE HERO CONTENT --- */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">[SL] Logistics</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="pages/eventindex.html">Events</a>
+      <a href="pages/partnersindex.html">Partners</a>
+      <a href="pages/applicationsindex.html">Applications</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>[SL] Logistics</h1>
+      <p>Move, Fun, explore</p>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about">
+    <div class="about-text">
+      <h2>About SL Logistics</h2>
+      <p>
+        On the 12th of October, 2024 — [SL] Logistics was founded by Sprogg28 with a mission to build an inclusive community of drivers from around the world who share a passion for exploring the vast roads of Europe and America in their favorite driving games.
+      </p>
+      <p>
+        Through [SL] Logistics organized convoys and events, the company Is aiming to unite drivers in their shared passion for exploration, bridging all the distances and building lasting friendships along the way.
+      </p>
+      <p>
+        With all of our staff and community We all can grow togeather as a Community.
+      </p>
+    </div>
+    <div class="about-img">
+      <img src="Halloween.png" alt="Truck on the road">
+    </div>
+  </section>
+
+  <!-- SCROLL ANIMATION -->
+  <script>
+    const aboutImg = document.querySelector('.about-img');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    observer.observe(aboutImg);
+  </script>
+</body>
+</html>
