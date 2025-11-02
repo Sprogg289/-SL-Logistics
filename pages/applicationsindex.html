@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[SL] Logistics Application</title>
+  <style>
+    /* --- Global Reset --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('../Application/trucking.png') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem; z-index: 1000;
+    }
+
+    .navbar .logo { font-weight: 700; font-size: 1.2rem; }
+    .navbar a {
+      color: #fff; text-decoration: none; margin-left: 1rem;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover { color: #8B1627; }
+
+    /* Hero */
+    .hero {
+      height: 70vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem,5vw,4rem); margin-bottom:0.5rem;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.7);
+    }
+    .hero p {
+      font-size: clamp(1rem,2vw,1.5rem); color:#ddd;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.7);
+    }
+
+    /* Tabs */
+    .tabs { text-align: center; margin-top: 2rem; }
+    .tab-buttons {
+      display: flex; justify-content: center; flex-wrap: nowrap; gap: 1rem;
+      margin-bottom: 2rem; overflow-x: auto; scrollbar-width: none;
+    }
+    .tab-buttons::-webkit-scrollbar { display: none; }
+    .tab-buttons button {
+      background: transparent; color:#fff; border:2px solid #8B1627;
+      padding:0.7rem 1.5rem; border-radius:6px; cursor:pointer;
+      transition: all 0.3s ease; font-size:1rem; white-space: nowrap;
+    }
+    .tab-buttons button:hover,
+    .tab-buttons button.active { background:#8B1627; color:#fff; }
+
+    .tab-content { display: none; animation: fadeIn 0.6s ease forwards; }
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
+    /* --- Application Cards --- */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 2rem 5%;
+    }
+
+    /* Staff application grid only: smaller cards to fit more */
+    #staff .app-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .app-card {
+      background: rgba(20,20,20,0.9);
+      border: 2px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex; flex-direction: column;
+    }
+
+    .app-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+    }
+
+    .app-card img {
+      width: 100%; height: 150px; object-fit: cover; border-bottom: 2px solid #8B1627;
+    }
+
+    .app-card-content {
+      padding: 0.8rem; text-align: left; flex:1;
+    }
+
+    .app-card-content h3 {
+      font-size: 0.95rem; background:#8B1627; display:inline-block;
+      padding:0.3rem 0.8rem; border-radius:6px;
+    }
+
+    .app-card-content p { margin-top:0.4rem; color:#ccc; font-size:0.85rem; }
+
+    .apply-btn {
+      margin-top: 0.6rem; padding:0.5rem 1rem;
+      background:#8B1627; border:none; border-radius:6px;
+      color:#fff; text-decoration:none; display:inline-block;
+      font-size:0.85rem; transition:background 0.3s ease;
+    }
+    .apply-btn:hover { background:#a91a31; }
+
+    @media (max-width: 600px) {
+      .app-card-content h3 { font-size:0.85rem; }
+      .app-card-content p { font-size:0.75rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">[SL] Logistics</div>
+    <div>
+      <a href="../index.html">Home</a>
+      <a href="eventindex.html">Events</a>
+      <a href="partnersindex.html">Partners</a>
+      <a href="#">Applications</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Apply to Join [SL] Logistics</h1>
+    <p>Take your trucking journey to the next level — join our team of professionals.</p>
+  </section>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="drivers">Driver Application</button>
+      <button class="tab-btn" data-tab="staff">Staff Application</button>
+    </div>
+
+    <!-- DRIVER APPLICATION -->
+    <div id="drivers" class="tab-content active">
+      <div class="app-grid">
+        <div class="app-card">
+          <img src="../Application/New Project (20).png" alt="Driver Application">
+          <div class="app-card-content">
+            <h3>Driver Application</h3>
+            <p>Start your journey with [SL] Logistics today!</p>
+            <p>Requirements:</p>
+            <p>🚫 Max 3 active bans</p>
+            <p>🏷 Use our player tag at all times</p>
+            <p>⏳ 20+ hours playtime on ETS2/ATS</p>
+            <p>🎨 Use our truck & trailer paintjob</p>
+            <p>👤 Age 13+</p>
+            <p>💬 4+ months Discord & TMP account age</p>
+            <a href="https://discord.gg/KWR3mtQkSt" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAFF APPLICATION -->
+    <div id="staff" class="tab-content">
+      <div class="app-grid">
+        <div class="app-card">
+          <img src="../Application/1 (1).png" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Media Team</h3>
+            <p>Join our media team to capture photos and videos for the community.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScwNeVRJhazFzKKQgw41TNzOThFB2GtHpW38LOIAeNkgDi03g/viewform?usp=header" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+        
+        <div class="app-card">
+          <img src="../Application/1 (2).png" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Community Moderator</h3>
+            <p>A community mod helps ensure the server has no issues and everyone in the community is safe and having a great time.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdV-Y_EN2X9vvyNMIHN48AeU0ZfYITGPtOv6IvWWPnOx75uSg/viewform?usp=header" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <img src="../Application/1 (3).png" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Human Resources Team</h3>
+            <p>Manage recruitment and foster a supportive community. Be the backbone of our team and help us grow efficiently.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScVqQfc8mIJGSfLKfI5hLRm38_Fd5VDOXOXe4j6a4YG-5DIpA/viewform?usp=header" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <img src="../Application/ets2_20251005_161834_00.png" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Community support</h3>
+            <p>Help out our community by handling tickets Helping in-game and more!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTHKG7IQHYJVNbtaQD5zyh9O49O_oFsrmkVcYbSYvhORYVXQ/viewform?usp=header" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <!-- Example of more cards: -->
+        <!--<div class="app-card">
+          <img src="../placeholder.webp" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Support Staff</h3>
+            <p>Assist in managing community events and administrative tasks.</p>
+            <a href="https://discord.gg/KWR3mtQkSt" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+
+        <div class="app-card">
+          <img src="../placeholder.webp" alt="Staff Application">
+          <div class="app-card-content">
+            <h3>Creative Team</h3>
+            <p>Design graphics, edit videos, and help with promotional content.</p>
+            <a href="https://discord.gg/KWR3mtQkSt" target="_blank" class="apply-btn">Apply Now</a>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+ 
+ <script>
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events | [SL] Logistics</title>
+  <style>
+    /* --- Global Reset --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- Background Image --- */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('../Application/1\ \(1\).png') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #8B1627;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      color: #ddd;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    /* --- Tabs --- */
+    .tabs {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab-buttons button {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #8B1627;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .tab-buttons button:hover,
+    .tab-buttons button.active {
+      background: #8B1627;
+      color: #fff;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Event Grid --- */
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 3rem 10%;
+    }
+
+    .event-card {
+      background: rgba(20, 20, 20, 0.9);
+      border: 2px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    .event-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 2px solid #8B1627;
+    }
+
+    .event-card-content {
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .event-card-content h3 {
+      font-size: 1.2rem;
+      background: #8B1627;
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+    }
+
+    .event-card-content p {
+      margin-top: 0.8rem;
+      color: #ccc;
+    }
+
+    .event-date {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      .event-card-content h3 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Alpine Cargo</div>
+    <div>
+      <a href="../index.html">Home</a>
+      <a href="#">Events</a>
+      <a href="partnersindex.html">Partners</a>
+      <a href="applicationsindex.html">Applications</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>[SL] Logistics Events</h1>
+    <p>Join in on our convoys, explore new routes, and connect with our community.</p>
+  </section>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="upcoming">Upcoming Events</button>
+      <button class="tab-btn" data-tab="ongoing">Ongoing Events</button>
+      <button class="tab-btn" data-tab="past">Past Highlights</button>
+    </div>
+
+    <!-- UPCOMING EVENTS -->
+    <div id="upcoming" class="tab-content active">
+      <div class="event-grid">
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 2">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">📅 October 30, 2025</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 2">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">📅 October 30, 2025</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 3">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">📅 December 20, 2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ONGOING EVENTS -->
+    <div id="ongoing" class="tab-content">
+      <div class="event-grid">
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 1">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">🏁 Ongoing - Ends October 31, 2025</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 2">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">🏁 Ongoing - Weekly Updates</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 2">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">🏁 Ongoing - Weekly Updates</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAST EVENTS -->
+    <div id="past" class="tab-content">
+      <div class="event-grid">
+
+        <div class="event-card">
+          <img src="../partners/Rortom Logistics.png" alt="Event 1">
+          <div class="event-card-content">
+            <h3>🌍  Rortom Logistics – First Official Convoy! 🌍 </h3>
+            <p>On October 3rd, Rortom Logistics will host its first-ever official convoy, marking an exciting milestone for our growing community. We’ll gather at RT Log in Geneva, with the meetup starting at 18:00 CEST and departure set for 18:30 CEST sharp.
+
+The route will take us on a scenic journey through the majestic Swiss Alps, showcasing breath-taking mountain roads and beautiful landscapes before descending into Italy and finishing at IKA in Milan. This event isn’t just about the drive—it’s about celebrating our team spirit, building memories, and rolling together as one.
+</p>
+            <div class="event-date">✅ 3 October 2025</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 2">
+          <div class="event-card-content">
+            <h3>N/A</h3>
+            <p>N/A</p>
+            <div class="event-date">✅ June 2025</div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="../placeholder.webp" alt="Event 3">
+          <div class="event-card-content">
+            <h3>SN/A</h3>
+            <p>N/A</p>
+            <div class="event-date">✅ April 2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching logic
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

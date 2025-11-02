@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerships | [SL] Logistics</title>
+  <style>
+    /* ===== Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.3em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #8B1627; /* Updated hover color */
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+                  url(../partners/ets2_20251024_201834_00.png) no-repeat center/cover;
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .hero h2 {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+      line-height: 1.6em;
+    }
+
+    /* ===== Partners Section ===== */
+    .partners {
+      background: #111;
+      padding: 70px 30px;
+      text-align: center;
+      animation: fadeInUp 1.5s ease-in;
+    }
+
+    .partners h3 {
+      font-size: 2em;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00bfff;
+    }
+
+    .partner-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 40px;
+      align-items: center;
+      justify-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .partner-logos img {
+      width: 140px;
+      height: auto;
+      filter: grayscale(100%);
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .partner-logos img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* ===== Call to Action ===== */
+    .cta {
+      background: linear-gradient(135deg, #00bfff, #0077b6);
+      text-align: center;
+      padding: 60px 20px;
+      color: white;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .cta h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      font-size: 1.1em;
+      line-height: 1.6em;
+    }
+
+    .partner-btn {
+      background: white;
+      color: black;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .partner-btn:hover {
+      background: #f0f0f0;
+      transform: scale(1.05);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto;
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>[SL] Logistics</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="eventindex.html">Events</a>
+      <a href="#">Partners</a>
+      <a href="applicationsindex.html">Applications</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Building Strong Partnerships</h2>
+    <p>At [SL] Logistics, we’re proud to collaborate with companies and communities that share our passion for innovation, efficiency, and excellence in logistics.</p>
+  </section>
+
+  <section class="partners">
+    <h3>Our Valued Partners</h3>
+    <div class="partner-logos">
+      <img src="../partners/Rortom Logistics.png" alt="Rortom Logistics">
+      <img src="../placeholder.webp" alt="N/A">
+      <img src="../placeholder.webp" alt="N/A">
+      <img src="../placeholder.webp" alt="N/A">
+      <img src="../placeholder.webp" alt="N/A">
+    </div>
+  </section>
+
+  <section class="cta">
+    <h3>Want to Partner With Us?</h3>
+    <p>Join our growing network of trusted partners. Together, we’ll drive innovation, reliability, and success across the logistics industry.</p>
+    <a href="#" onclick="confirmPartner()" class="partner-btn">Become a Partner</a>
+  </section>
+
+  <footer>
+    © 2025 [SL] Logistics. All Rights Reserved.
+  </footer>
+
+  <script>
+    function confirmPartner() {
+      const confirmMsg = "You must verify first, then head over to 🎫・ticket and create a Partnerships: ticket.\n\nDo you want to proceed to the Discord server?";
+      if (confirm(confirmMsg)) {
+        window.open('https://discord.gg/EBkAxqB2QC', '_blank');
+      } else {
+        alert("You have chose to close. If you are still interested you can press the button again or join the discord here https://discord.gg/xcScTBc5tM");
+      }
+    }
+  </script>
+</body>
+</html>
